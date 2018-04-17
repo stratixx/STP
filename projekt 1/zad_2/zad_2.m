@@ -1,4 +1,4 @@
-run('../utils/init');
+%run('../utils/init');
 run('../zad_1/zad_1');
 %beQuiet = false;
 println('Start: Zad_2', beQuiet);

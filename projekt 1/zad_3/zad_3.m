@@ -1,4 +1,5 @@
 %run('../utils/init');
+beQuiet = true;
 run('../zad_2/zad_2');
 %beQuiet = false;
 println('Start: Zad_3', beQuiet);
@@ -10,5 +11,3 @@ if ~beQuiet
     display(transmit_2);
 end
 println('End: Zad_3', beQuiet);
-
-%beQuiet = true;

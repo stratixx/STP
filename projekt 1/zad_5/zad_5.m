@@ -1,3 +1,4 @@
+load('../dane_2_etap.mat')
 % Sterowalnoœæ
 S = [ B2 A2*B2 A2^2*B2 ];
 detS = det(S);

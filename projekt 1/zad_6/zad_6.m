@@ -36,23 +36,23 @@ for k=1:1:length(zb)
     t = sim_model.get('tout');
     
     figure(1)
-    subplot(2,2,1);
+    subplot(2,1,1);
+    xlabel('Czas');
+    ylabel('Wartoœæ');
     hold on; box on; grid on;
-    title('U(z)');
+    title('Sygna³ steruj¹cy');
     plot(t, y);
-    subplot(2,2,2);
+    legend('u(t)');
+    subplot(2,1,2);
+    xlabel('Czas');
+    ylabel('Wartoœæ');
     hold on; box on; grid on;
-    title('x1');
-    plot(t, x(:,1));
-    subplot(2,2,3);
-    hold on; box on; grid on;
-    title('x2');
-    plot(t, x(:,2));
-    subplot(2,2,4);
-    hold on; box on; grid on;
-    title('x3');
+    title('Zmienne stanu');
     plot(t, x(:,3));
-    print(strcat('img/wariant1/ostateczny/zad_6_wariant_1_zb_', strrep(num2str(zb(k)),'.','_'),'_tkonc_',num2str(tkonc)),'-dpng');
+    plot(t, x(:,2));
+    plot(t, x(:,1));
+    legend('x1(t)', 'x2(t)', 'x3(t)');
+    print(strcat('img/wariant1/ogolne/zad_6_wariant_1_zb_', strrep(num2str(zb(k)),'.','_'),'_tkonc_',num2str(tkonc)),'-dpng');
     hold off;
     close 1;
 end
@@ -77,23 +77,23 @@ if true
             continue;
         end
         figure(1)
-        subplot(2,2,1);
+        subplot(2,1,1);
+        xlabel('Czas');
+        ylabel('Wartoœæ');
         hold on; box on; grid on;
-        title('U(z)');
+        title('Sygna³ steruj¹cy');
         plot(t, y);
-        subplot(2,2,2);
+        legend('u(t)');
+        subplot(2,1,2);
+        xlabel('Czas');
+        ylabel('Wartoœæ');
         hold on; box on; grid on;
-        title('x1');
-        plot(t, x(:,1));
-        subplot(2,2,3);
-        hold on; box on; grid on;
-        title('x2');
-        plot(t, x(:,2));
-        subplot(2,2,4);
-        hold on; box on; grid on;
-        title('x3');
+        title('Zmienne stanu');
         plot(t, x(:,3));
-        print(strcat('img/wariant2/ostateczne/zad_6_wariant_2_a_', strrep(num2str(a(na)),'.','_'),'_b_', strrep(num2str(b(nb)),'.','_')),'-dpng');
+        plot(t, x(:,2));
+        plot(t, x(:,1));
+        legend('x1(t)', 'x2(t)', 'x3(t)');
+        print(strcat('img/wariant2/ogolne/zad_6_wariant_2_a_', strrep(num2str(a(na)),'.','_'),'_b_', strrep(num2str(b(nb)),'.','_')),'-dpng');
         hold off;
         close 1;
         end

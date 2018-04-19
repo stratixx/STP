@@ -19,9 +19,10 @@ C1 = [ num_z(2:end) ];
 D1 = [ 0 ];
 
 % Metoda 2
-A2 = [ - den_z(2:end); 1 0 0; 0 1 0 ]';
-B2 = [ num_z(2:end)' ];
-C2 = [ 1 0 0 ];
+A2 = A1';
+B2 = C1';A
+C2 = B1';
 D2 = [ 0 ];
+
 
 println('End: Zad_2', beQuiet);

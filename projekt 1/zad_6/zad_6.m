@@ -1,4 +1,4 @@
-load('../dane_2_etap.mat');
+load('../dane_po_zad_4.mat');
 
 x0 = [ -1; -2; -3 ];
 xt = [ 0; 0; 0; ];
@@ -25,15 +25,20 @@ set_param(model_cs,'Solver','ode45',...
                 'StartTime','0', 'StopTime', num2str(tkonc), ...
                 'SaveState','on', 'SaveOutput','on');
 
-if true            
-zb = 0.6;
+if true   
+% Wariant 1 - trzy bieguny rzeczywiste
+zb = -2:0.05:2;
 for k=1:1:length(zb)
-    name = strcat('Wariant 1, trzy bieguny rzeczywiste zb=',num2str(zb(k)));
+    zb(k)
     K = acker(A2, B2, [zb(k) zb(k) zb(k)]);
+    K_real = K;
     sim_model = sim(model, model_cs);
     x= sim_model.get('xout');
     y = sim_model.get('yout');
     t = sim_model.get('tout');
+    if max(y)>10^4 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
+        continue;
+    end
     
     figure(1)
     subplot(2,1,1);
@@ -59,21 +64,24 @@ end
 end
 
 if true
-    name = 'Bieguny zespolone, ';
-    a=0.25;
-    b=0.02;
+% Wariant 2 - Bieguny zespolone
+    a=-2:0.05:2;
+    b=0.05:0.05:2;
     poles = zeros(length(a-1)*length(b-1),3);
     for na=1:1:length(a)
         for nb=1:1:length(b)
+            a(na)
+            b(nb)
         z1 = 0.15;
         z2 = a(na) + b(nb)*j;
         z3 = a(na) - b(nb)*j;
         K = place(A2, B2, [z1 z2 z3]);
+        K_imag = K;
         sim_model = sim(model, model_cs);
         x= sim_model.get('xout');
         y = sim_model.get('yout');
         t = sim_model.get('tout');
-        if max(y)>10^3 || max(x(:,1))>10^3 ||max(x(:,2))>10^3 ||max(x(:,3))>10^3
+        if max(y)>10^4 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
             continue;
         end
         figure(1)

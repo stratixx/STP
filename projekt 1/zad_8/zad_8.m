@@ -1,4 +1,4 @@
-load('../dane_po_zad_6.mat');
+%load('../dane_po_zad_6.mat');
 
 x0_observer = [ 0 0 ];
 
@@ -10,7 +10,7 @@ A21 = A2(2:3,1);
 B_1 = B2(1,1);
 B_2 = B2(2:3,1);
 
-z2 = -10;
-z3 = -15;
+z2 = 0;
+z3 = 0;
 
 L=acker(A22',A12', [z2 z3])'

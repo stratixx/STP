@@ -27,7 +27,7 @@ set_param(model_cs,'Solver','ode45',...
 
 if true   
 % Wariant 1 - trzy bieguny rzeczywiste
-zb = -2:0.05:2;
+zb = 0.6;
 for k=1:1:length(zb)
     zb(k)
     K = acker(A2, B2, [zb(k) zb(k) zb(k)]);
@@ -63,7 +63,7 @@ for k=1:1:length(zb)
 end
 end
 
-if true
+if false
 % Wariant 2 - Bieguny zespolone
     a=-2:0.05:2;
     b=0.05:0.05:2;

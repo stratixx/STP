@@ -29,8 +29,9 @@ if true
 % Wariant 1 - trzy bieguny rzeczywiste
 zb = 0;
 for k=1:1:length(zb)
-    K = acker(A2, B2, [zb(k) zb(k) zb(k)]);
-    K_real = K;
+    z_var_1 = [zb(k) zb(k) zb(k)];
+    K = acker(A2, B2, z_var_1);
+    K_var_1 = K;
     sim_model = sim(model, model_cs);
     x= sim_model.get('xout');
     y = sim_model.get('yout');
@@ -38,7 +39,7 @@ for k=1:1:length(zb)
     if max(y(:,1))>10^4 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
         continue;
     end
-    display(zb(k));
+    display(zb(k))
     figure(1)
     subplot(2,1,1);
     xlabel('Czas');
@@ -60,6 +61,8 @@ for k=1:1:length(zb)
     hold off;
     close all;
 end
+    z0 = z_var_1;
+    K = K_var_1;
 end
 
 if false
@@ -72,8 +75,9 @@ if false
         z1 = 0.15;
         z2 = a(na) + b(nb)*j;
         z3 = a(na) - b(nb)*j;
-        K = place(A2, B2, [z1 z2 z3]);
-        K_imag = K;
+        z_var_2 = [z1 z2 z3];
+        K = place(A2, B2, z_var_2);
+        K_var_2 = K;
         sim_model = sim(model, model_cs);
         x= sim_model.get('xout');
         y = sim_model.get('yout');
@@ -105,4 +109,6 @@ if false
         close all;
         end
     end
+    z0 = z_var_2;
+    K = K_var_2;
 end

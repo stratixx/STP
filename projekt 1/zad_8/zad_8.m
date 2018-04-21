@@ -1,5 +1,6 @@
-%load('../dane_po_zad_6.mat');
+load('../dane_po_zad_6.mat');
 
+x0 = [-1 -2 -3];
 x0_observer = [ 0 0 ]; % stan poczatkowy obserwatora
 
 A22 = A2(2:3,2:3);
@@ -22,8 +23,8 @@ set_param(model_cs,'Solver','ode45',...
                 'SaveState','on', 'SaveOutput','on');
 
 if true   
-    z2 = -10:1:10;
-    z3 = -10:1:10;
+    z2 = 0;
+    z3 = 0;
     for kz2=1:1:length(z2)
         for kz3=1:1:length(z3)
             L=acker(A22',A12', [z2(kz2) z3(kz3)])';

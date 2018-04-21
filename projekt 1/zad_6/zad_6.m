@@ -27,26 +27,25 @@ set_param(model_cs,'Solver','ode45',...
 
 if true   
 % Wariant 1 - trzy bieguny rzeczywiste
-zb = 0.6;
+zb = 0;
 for k=1:1:length(zb)
-    zb(k)
     K = acker(A2, B2, [zb(k) zb(k) zb(k)]);
     K_real = K;
     sim_model = sim(model, model_cs);
     x= sim_model.get('xout');
     y = sim_model.get('yout');
     t = sim_model.get('tout');
-    if max(y)>10^4 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
+    if max(y(:,1))>10^4 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
         continue;
     end
-    
+    display(zb(k));
     figure(1)
     subplot(2,1,1);
     xlabel('Czas');
     ylabel('Wartoœæ');
     hold on; box on; grid on;
     title('Sygna³ steruj¹cy');
-    plot(t, y);
+    plot(t, y(:,1));
     legend('u(t)');
     subplot(2,1,2);
     xlabel('Czas');
@@ -59,19 +58,17 @@ for k=1:1:length(zb)
     legend('x1(t)', 'x2(t)', 'x3(t)');
     print(strcat('img/wariant1/ogolne/zad_6_wariant_1_zb_', strrep(num2str(zb(k)),'.','_'),'_tkonc_',num2str(tkonc)),'-dpng');
     hold off;
-    close 1;
+    close all;
 end
 end
 
 if false
 % Wariant 2 - Bieguny zespolone
-    a=-2:0.05:2;
-    b=0.05:0.05:2;
+    a=-10:0.1:10;
+    b=0.7;
     poles = zeros(length(a-1)*length(b-1),3);
     for na=1:1:length(a)
         for nb=1:1:length(b)
-            a(na)
-            b(nb)
         z1 = 0.15;
         z2 = a(na) + b(nb)*j;
         z3 = a(na) - b(nb)*j;
@@ -81,16 +78,18 @@ if false
         x= sim_model.get('xout');
         y = sim_model.get('yout');
         t = sim_model.get('tout');
-        if max(y)>10^4 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
+        if max(y(:,1))>10^4 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
             continue;
         end
+        display(a(na));
+        display(b(nb))
         figure(1)
         subplot(2,1,1);
         xlabel('Czas');
         ylabel('Wartoœæ');
         hold on; box on; grid on;
         title('Sygna³ steruj¹cy');
-        plot(t, y);
+        plot(t, y(:,1));
         legend('u(t)');
         subplot(2,1,2);
         xlabel('Czas');
@@ -101,9 +100,9 @@ if false
         plot(t, x(:,2));
         plot(t, x(:,1));
         legend('x1(t)', 'x2(t)', 'x3(t)');
-        print(strcat('img/wariant2/ogolne/zad_6_wariant_2_a_', strrep(num2str(a(na)),'.','_'),'_b_', strrep(num2str(b(nb)),'.','_')),'-dpng');
+        print(strcat('img/wariant2/zmiana_a/zad_6_wariant_2_a_', strrep(num2str(a(na)),'.','_'),'_b_', strrep(num2str(b(nb)),'.','_')),'-dpng');
         hold off;
-        close 1;
+        close all;
         end
     end
 end

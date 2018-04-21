@@ -55,7 +55,7 @@ for k=1:1:length(zb)
     plot(t, x(:,3));
     plot(t, x(:,2));
     plot(t, x(:,1));
-    legend('x1(t)', 'x2(t)', 'x3(t)');
+    legend('x_1(t)', 'x_2(t)', 'x_3(t)');
     print(strcat('img/wariant1/ogolne/zad_6_wariant_1_zb_', strrep(num2str(zb(k)),'.','_'),'_tkonc_',num2str(tkonc)),'-dpng');
     hold off;
     close all;
@@ -99,7 +99,7 @@ if false
         plot(t, x(:,3));
         plot(t, x(:,2));
         plot(t, x(:,1));
-        legend('x1(t)', 'x2(t)', 'x3(t)');
+        legend('x_1(t)', 'x_2(t)', 'x_3(t)');
         print(strcat('img/wariant2/zmiana_a/zad_6_wariant_2_a_', strrep(num2str(a(na)),'.','_'),'_b_', strrep(num2str(b(nb)),'.','_')),'-dpng');
         hold off;
         close all;

@@ -2,9 +2,9 @@ run('../utils/init');
 load('../dane_poczatkowe');
 %beQuiet = false;
 println('Start: Zad_1', beQuiet);
+
 % dyskretyzacja transmitancji
 [num_z, den_z] = c2dm(num_s, den_s, Tp,'zoh');
-% i mianownik transmitancji dyskretnej
 
 zeros_s = roots(num_s)';
 zeros_z = roots(num_z)';

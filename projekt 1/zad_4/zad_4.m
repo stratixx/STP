@@ -56,3 +56,7 @@ hold off;
 close all;
 
 println('End: Zad_4', beQuiet);
+
+clear A A1 B B1 C C1 D D1 cs model_1 model_2 model_cs model_z name
+clear num_s den_s poles_s poles_z zeros_s zeros_z x0 tkonc
+clear sim_model_1 sim_model_1_nz sim_model_2 sim_model_2_nz sim_model_z sim_model_z_nz

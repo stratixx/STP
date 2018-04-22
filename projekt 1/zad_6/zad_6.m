@@ -1,7 +1,7 @@
 load('../dane_po_zad_4.mat');
 
 x0 = [ -1; -2; -3 ];
-tkonc = 10;
+tkonc = 5;
 
 %zaladowanie modelu symulowanego
 model = 'reg_od_stanu';
@@ -19,7 +19,7 @@ zb = 0;
 for k=1:1:length(zb)
     z_var_1 = [zb(k) zb(k) zb(k)];
     K = acker(A2, B2, z_var_1);
-    K_var_1 = K;
+    K1 = K;
     sim_model = sim(model, model_cs);
     x= sim_model.get('xout');
     y = sim_model.get('yout');
@@ -50,23 +50,22 @@ for k=1:1:length(zb)
     close all;
 end
     z0 = z_var_1;
-    K = K_var_1
 end
 
 if true
 % Wariant 2 - Bieguny zespolone
+    z1 = 0.15;
     a=0.1;
     b=0.2;
     poles = zeros(length(a-1)*length(b-1),3);
     for na=1:1:length(a)
         display('a = '); display(num2str(a(na)));
         for nb=1:1:length(b)
-        z1 = 0.15;
         z2 = a(na) + b(nb)*j;
         z3 = a(na) - b(nb)*j;
         z_var_2 = [z1 z2 z3];
         K = place(A2, B2, z_var_2);
-        K_var_2 = K;
+        K2 = K;
         sim_model = sim(model, model_cs);
         x= sim_model.get('xout');
         y = sim_model.get('yout');
@@ -99,5 +98,7 @@ if true
         end
     end
     z0 = z_var_2;
-    K = K_var_2
 end
+
+clear x0 tkonc z_var_1 z_var_2 cs model_cs
+clear a b k model na nb poles sim_model t x y z0 z1 z2 z3 zb

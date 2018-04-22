@@ -11,3 +11,4 @@ if ~beQuiet
     display(transmit_2);
 end
 println('End: Zad_3', beQuiet);
+clear transmit_1 transmit_2

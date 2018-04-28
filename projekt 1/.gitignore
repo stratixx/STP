@@ -1,4 +1,5 @@
 *.asv
 *.png
-*/STP_027_076.pdf
-*/ZadPowtSTP_sI.pdf
+~*.docx
+~*.tmp
+../*.pdf

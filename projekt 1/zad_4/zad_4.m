@@ -1,7 +1,7 @@
 %run('../utils/init');
 beQuiet = true;
 run('../zad_3/zad_3');
-beQuiet = false;
+%beQuiet = false;
 
 tkonc = 5;
 
@@ -26,33 +26,41 @@ sim_model_z = sim(model_z, model_cs);
 sim_model_1 = sim(model_1, model_cs);
 sim_model_2 = sim(model_2, model_cs);
 figure(1)
-hold on;
-box on;
-grid on;
+hold on; box on; grid on;
 title(name);
 stairs(sim_model_z.get('tout'), sim_model_z.get('yout'));
 stairs(sim_model_1.get('tout'), sim_model_1.get('yout'));
+legend('Transmitancja dyskretna', 'Model wariant 1');
+print('img/1_z_zero','-dpng');
+figure(2)
+hold on; box on; grid on;
+title(name);
+stairs(sim_model_z.get('tout'), sim_model_z.get('yout'));
 stairs(sim_model_2.get('tout'), sim_model_2.get('yout'));
-legend('Model dyskretny', '1 metoda', '2 metoda');
-print('img/zad_4_zero','-dpng');
+legend('Transmitancja dyskretna', 'Model wariant 2');
+print('img/2_z_zero','-dpng');
 hold off
 
 name = 'Odpowiedü skokowa modeli, niezerowe warunki poczatkowe';
 x0 = [ 10 1 10 ]; % wartosci do wyznaczenia
-sim_model_z_nz = sim(model_z, model_cs);
-sim_model_1_nz = sim(model_1, model_cs);
-sim_model_2_nz = sim(model_2, model_cs);
-figure(2)
-hold on;
-box on;
-grid on;
+sim_model_z = sim(model_z, model_cs);
+sim_model_1 = sim(model_1, model_cs);
+sim_model_2 = sim(model_2, model_cs);
+figure(3)
+hold on; box on; grid on;
 title(name);
-stairs(sim_model_z_nz.get('tout'), sim_model_z_nz.get('yout'));
-stairs(sim_model_1_nz.get('tout'), sim_model_1_nz.get('yout'));
-stairs(sim_model_2_nz.get('tout'), sim_model_2_nz.get('yout'));
-legend('Model dyskretny', '1 metoda', '2 metoda');
-print('img/zad_4_non_zero','-dpng');
-hold off;
+stairs(sim_model_z.get('tout'), sim_model_z.get('yout'));
+stairs(sim_model_1.get('tout'), sim_model_1.get('yout'));
+legend('Transmitancja dyskretna', 'Model wariant 1');
+print('img/1_z_non_zero','-dpng');
+figure(4)
+hold on; box on; grid on;
+title(name);
+stairs(sim_model_z.get('tout'), sim_model_z.get('yout'));
+stairs(sim_model_2.get('tout'), sim_model_2.get('yout'));
+legend('Transmitancja dyskretna', 'Model wariant 2');
+print('img/2_z_non_zero','-dpng');
+hold off
 close all;
 
 println('End: Zad_4', beQuiet);

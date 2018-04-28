@@ -13,15 +13,16 @@ set_param(model_cs,'Solver','ode45',...
                 'StartTime','0', 'StopTime', num2str(tkonc), ...
                 'SaveState','on', 'SaveOutput','on');
 
-if true   
+if false   
 % Wariant 1 - trzy bieguny rzeczywiste
-zb = 0;
+zb = 0.1;
 for k=1:1:length(zb)
     z_var_1 = [zb(k) zb(k) zb(k)];
     K = acker(A2, B2, z_var_1);
+    N = [A2 B2;C2 D2]^(-1)*[0;0;0;1];
     K1 = K;
     sim_model = sim(model, model_cs);
-    x= sim_model.get('xout');
+    x = sim_model.get('xout');
     y = sim_model.get('yout');
     t = sim_model.get('tout');
     if max(y(:,1))>10^6 || max(x(:,1))>10^3 || max(x(:,2))>10^3 || max(x(:,3))>10^3
@@ -52,9 +53,9 @@ end
     z0 = z_var_1;
 end
 
-if true
+if false
 % Wariant 2 - Bieguny zespolone
-    z1 = 0.15;
+    z1 = 0.2;
     a=0.1;
     b=0.2;
     poles = zeros(length(a-1)*length(b-1),3);
@@ -65,9 +66,10 @@ if true
         z3 = a(na) - b(nb)*j;
         z_var_2 = [z1 z2 z3];
         K = place(A2, B2, z_var_2);
+        N = [A2 B2;C2 D2]^(-1)*[0;0;0;1];
         K2 = K;
         sim_model = sim(model, model_cs);
-        x= sim_model.get('xout');
+        x = sim_model.get('xout');
         y = sim_model.get('yout');
         t = sim_model.get('tout');
         if max(y(:,1))>10^5 || max(x(:,1))>10^4 || max(x(:,2))>10^4 || max(x(:,3))>10^4
@@ -100,5 +102,5 @@ if true
     z0 = z_var_2;
 end
 
-clear x0 tkonc z_var_1 z_var_2 cs model_cs
+clear tkonc z_var_1 z_var_2 cs model_cs
 clear a b k model na nb poles sim_model t x y z0 z1 z2 z3 zb

@@ -5,10 +5,10 @@ tkonc = 5;
 x0 = [-1 -2 -3];
 x0_observer = [ 0 0 ]; % stan poczatkowy obserwatora
 
-%K1 = [20.9641    4.4562   -0.1628]; % wariant 1 regulatora
-%K2 = [19.4351    4.2586    0.4730]; % wariant 2 regulatora
+K1 = [19.6282    4.3585    0.8528]; % wariant 1 regulatora
+K2 = [19.2252    4.2790    0.7666]; % wariant 2 regulatora
 
-K = K2;
+K = K1;
 
 A22 = A2(2:3,2:3);
 A12 = A2(1,2:3);
@@ -39,6 +39,7 @@ if true
         for kz3=1:1:length(z3)
             z0_observer = [z2(kz2) z3(kz3)];
             L=acker(A22',A12', z0_observer)';
+            break;
             sim_model = sim(model, model_cs);
             x = sim_model.get('xout');
             t = sim_model.get('tout');

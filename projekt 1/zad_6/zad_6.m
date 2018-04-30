@@ -53,14 +53,14 @@ end
     z0 = z_var_1;
 end
 
-if false
+if true
 % Wariant 2 - Bieguny zespolone
-    z1 = 0.2;
+    z1 = 0.1;
     a=0.1;
     b=0.2;
     poles = zeros(length(a-1)*length(b-1),3);
     for na=1:1:length(a)
-        display('a = '); display(num2str(a(na)));
+        %display('a = '); display(num2str(a(na)));
         for nb=1:1:length(b)
         z2 = a(na) + b(nb)*j;
         z3 = a(na) - b(nb)*j;
@@ -72,11 +72,12 @@ if false
         x = sim_model.get('xout');
         y = sim_model.get('yout');
         t = sim_model.get('tout');
+        %display(strcat(' Amplitude: ',num2str(mean(max(x)-min(x)))))
         if max(y(:,1))>10^5 || max(x(:,1))>10^4 || max(x(:,2))>10^4 || max(x(:,3))>10^4
             continue;
         end
-        display(a(na));
-        display(b(nb))
+        %display(a(na));
+        %display(b(nb))
         figure(1)
         subplot(2,1,1);
         xlabel('Czas');

@@ -42,7 +42,7 @@ print('img/2_z_zero','-dpng');
 hold off
 
 name = 'Odpowiedü skokowa modeli, niezerowe warunki poczatkowe';
-x0 = [ 10 1 10 ]; % wartosci do wyznaczenia
+x0 = [ 1 1 1 ]; % wartosci do wyznaczenia
 sim_model_z = sim(model_z, model_cs);
 sim_model_1 = sim(model_1, model_cs);
 sim_model_2 = sim(model_2, model_cs);
@@ -52,14 +52,14 @@ title(name);
 stairs(sim_model_z.get('tout'), sim_model_z.get('yout'));
 stairs(sim_model_1.get('tout'), sim_model_1.get('yout'));
 legend('Transmitancja dyskretna', 'Model wariant 1');
-print('img/1_z_non_zero','-dpng');
+print('img/test/1_z_non_zero','-dpng');
 figure(4)
 hold on; box on; grid on;
 title(name);
 stairs(sim_model_z.get('tout'), sim_model_z.get('yout'));
 stairs(sim_model_2.get('tout'), sim_model_2.get('yout'));
 legend('Transmitancja dyskretna', 'Model wariant 2');
-print('img/2_z_non_zero','-dpng');
+print('img/test/2_z_non_zero','-dpng');
 hold off
 close all;
 

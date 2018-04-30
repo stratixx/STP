@@ -2,13 +2,13 @@ load('../dane_po_zad_6.mat');
 
 tkonc = 5;
 
-x0 = [-1 -2 -3];
+x0 = [-10 -20 -30];
 x0_observer = [ 0 0 ]; % stan poczatkowy obserwatora
 
 K1 = [19.6282    4.3585    0.8528]; % wariant 1 regulatora
-K2 = [19.2252    4.2790    0.7666]; % wariant 2 regulatora
+K2 = [19.6450    4.2382    0.1794]; % wariant 2 regulatora
 
-K = K1;
+K = K2;
 
 A22 = A2(2:3,2:3);
 A12 = A2(1,2:3);
@@ -32,14 +32,13 @@ set_param(model_cs,'Solver','ode45',...
                 'SaveState','on', 'SaveOutput','on');
 
 if true   
-    z2 = [0 0.5];
-    z3 = [0 0.5];
+    z2 = [0 0.8];
+    z3 = [0 0.8];
     for kz2=1:1:length(z2)
         display('z2 = '); display(num2str(z2(kz2)));
         for kz3=1:1:length(z3)
             z0_observer = [z2(kz2) z3(kz3)];
             L=acker(A22',A12', z0_observer)';
-            break;
             sim_model = sim(model, model_cs);
             x = sim_model.get('xout');
             t = sim_model.get('tout');
@@ -72,7 +71,7 @@ if true
             stairs(t, x3_reg);
             stairs(t, x3_obs);
             legend('x_3reg(t)', 'x_3obs(t)', 'Location', 'southeast');
-            print(strcat('img/zad_8_z2_', strrep(num2str(z2(kz2)),'.','_'), '_z3_', strrep(num2str(z3(kz3)),'.','_'),'_tkonc_',num2str(tkonc)),'-dpng');
+            print(strcat('img/wariant2/zmiana_z2/zad_8_z2_', strrep(num2str(z2(kz2)),'.','_'), '_z3_', strrep(num2str(z3(kz3)),'.','_'),'_tkonc_',num2str(tkonc)),'-dpng');
             hold off;
             close all;
         end

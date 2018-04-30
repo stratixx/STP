@@ -18,8 +18,6 @@ B_1 = B2(1,1);
 B_2 = B2(2:3,1);
 
 
-Lslow=acker(A22',A12', [0.5 0.5])';
-Lfast=acker(A22',A12', [0 0])';
 
 %zaladowanie modelu symulowanego
 model = 'observer_test';
@@ -32,8 +30,8 @@ set_param(model_cs,'Solver','ode45',...
                 'SaveState','on', 'SaveOutput','on');
 
 if true   
-    z2 = [0 0.8];
-    z3 = [0 0.8];
+    z2 = [0 0.5];
+    z3 = [0 0.5];
     for kz2=1:1:length(z2)
         display('z2 = '); display(num2str(z2(kz2)));
         for kz3=1:1:length(z3)

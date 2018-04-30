@@ -1,9 +1,21 @@
 load('../dane_po_zad_8.mat');
 
-x0 = [-1 -2 -3];
+x0 = [-10 -20 -30];
 x0_observer = [ 0 0 ]; % stan poczatkowy obserwatora
 
 tkonc = 5;
+
+K1 = [19.6282    4.3585    0.8528]; % wariant 1 regulatora
+K2 = [19.6450    4.2382    0.1794]; % wariant 2 regulatora
+
+Lslow=acker(A22',A12', [0.5 0.5])';
+Lfast=acker(A22',A12', [0 0])';
+
+kK = 1;
+kL = 'fast';
+%kL = 'slow';
+K=K1;
+L=Lfast;
 
 %zaladowanie modelu symulowanego
 model = 'reg_state_from_observer';
@@ -16,11 +28,6 @@ set_param(model_cs,'Solver','ode45',...
                 'SaveState','on', 'SaveOutput','on');
 
 if true   
-    kK = 2;
-    %kL = 'fast';
-    kL = 'slow';
-    K=K2;
-    L=Lslow;
             sim_model = sim(model, model_cs);
             y = sim_model.get('yout');
             x = sim_model.get('xout');

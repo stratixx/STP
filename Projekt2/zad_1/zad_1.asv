@@ -6,6 +6,9 @@ Tp = 0.5;
 
 s = tf('s');
 Gs = K0*exp(-T0*s) / ( (T1*s+1)*(T2*s+1) );
+figure(2);
+step(Gs);
+hold on; grid on; box on;
 
 A = T1*T2/(T1-T2);
 B = -A;
@@ -13,8 +16,9 @@ B = -A;
 a = exp(-Tp/T1);
 b = exp(-Tp/T2);
 
-z = tf('z', Tp);
+z = tf('z');
 Gz = K0/(T1-T2) * ( (T1*(1-a)-T2*(1-b))*z^(-1-T0/Tp) + (T2*(1-b)*a-T1*(1-a)*b)*z^(-2-T0/Tp) )/( 1-(a+b)*z^(-2) + a*b*z^(-2) )
+stairs(sysGz);
 
 numZ = zeros(1,3+T0/Tp);
 denZ = zeros(1,3+T0/Tp);
@@ -27,10 +31,4 @@ denZ(1,1) = 1;
 denZ(1,2) = -(a+b);
 denZ(1,3) = a*b;
 
-figure(1);
-step(Gs,'b',Gz,'g');
-legend('Transmitancja ci¹g³a', 'Transmitancja dyskretna', 'Location', 'southeast');
-xlabel('Czas');
-ylabel('Wartoœæ');
-title('OdpowiedŸ skokowa transmitancji');
-box on; grid on;
+

@@ -8,7 +8,7 @@ denZ = zeros(1,3+T0/Tp);
 
 numZ(1,length(numZ))   = (T2*(1-b)*a-T1*(1-a)*b); % c12
 numZ(1,length(numZ)-1) = (T1*(1-a)-T2*(1-b));     % c11
-numZ = numZ * 1/(T1-T2);
+numZ = numZ * K0/(T1-T2);
 
 denZ(1,1) = 1;
 denZ(1,2) = -(a+b); % -b1

@@ -1,6 +1,6 @@
  run('../zad_2/zad_2.m');
 
-Kk = 0.3862;
+Kk = 0.38623;
 Tk = 20;
 
 Kr = 0.6*Kk;
@@ -20,12 +20,18 @@ y=zeros(1,kk);
 e=zeros(1,kk);
 yzad=zeros(1,kk); yzad(1,50:kk)=1;
 
-regulator = 'DMC';
+regulator = 'PID';
 D = 500; % horyzont dynamiki
 lambda = 1;
 Nu = D; % horyzont sterowania
 N = D % horyzont predykcji
 
+%M = 
+%fi = eye(D);
+%LAMBDA = lambda*eye(D);
+%K = inv(M'*fi*M+LAMBDA)*M'*fi;
+%Yo = Y+M*deltaUp;
+%deltaU = K*(Yzad-Yo);
 
 for k=start:kk; %g³ówna ptla symulacyjna
     %symulacja obiektu
@@ -40,7 +46,7 @@ for k=start:kk; %g³ówna ptla symulacyjna
     
     if regulator == 'DMC'
         %sygna³ sterujcy regulatora PID
-        u(k)=r2*e(k-2)+r1*e(k-1)+r0*e(k)+u(k-1);
+        %u(k)=r2*e(k-2)+r1*e(k-1)+r0*e(k)+u(k-1);
     end
 end;
 %wyniki symulacji

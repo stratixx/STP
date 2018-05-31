@@ -1,10 +1,10 @@
 load('../dane_poczatkowe.mat')
 
-Kr = 0.3862;
+Kr = 0.38623;
 Ti = 100000000;
 Td = 0.000000001;
 
-Kk = 0.3862;
+Kk = 0.38623;
 Tk = 20;
 
 Kr = 0.6*Kk;
@@ -24,9 +24,10 @@ for kK=1:1:length(Kr)
     ylabel('Wartoœæ');
     title(strcat('Uk³ad regulacji z ci¹g³ym PID'));
     box on; grid on;  
-    print(strcat('img/wybrane/odp_skokowa_PID'),'-dpng');
+    %print(strcat('img/wybrane/odp_skokowa_PID'),'-dpng');
+    print(strcat('img/wybrane/Kr_', strrep(num2str(Kr(kK)),'.','_')),'-dpng');
 
-    %close 1;
+    close 1;
 end
 end
 

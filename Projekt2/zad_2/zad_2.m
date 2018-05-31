@@ -15,5 +15,5 @@ denZ(1,2) = -(a+b); % -b1
 denZ(1,3) = a*b;    % -b2
 
 c = numZ(1,1:length(numZ));
-b = -denZ(1,2:length(denZ));
+b = denZ(1,2:length(denZ));
 %y(k) = -b(1)*y(k-1)-b(2)*y(k-2) + c(11+1)*u(k-11)+c(12+1)*u(k-12);

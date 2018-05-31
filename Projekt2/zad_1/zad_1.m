@@ -11,9 +11,13 @@ z = tf('z', Tp);
 Gz = K0/(T1-T2) * ( (T1*(1-a)-T2*(1-b))*z^(-1-T0/Tp) + (T2*(1-b)*a-T1*(1-a)*b)*z^(-2-T0/Tp) )/( 1-(a+b)*z^(-2) + a*b*z^(-2) );
 z = 1;
 KstatZ = K0/(T1-T2) * ( (T1*(1-a)-T2*(1-b))*z^(-1-T0/Tp) + (T2*(1-b)*a-T1*(1-a)*b)*z^(-2-T0/Tp) )/( 1-(a+b)*z^(-2) + a*b*z^(-2) );
+%nie umiesz w algebrê czy coœ typie
 
+Gz = c2d(Gs,Tp,'zoh');
 figure(1);
-step(Gs,'b',Gz,'g');
+hold on;
+step(Gs,'b');
+step(Gz, 'g');
 legend('Transmitancja ci¹g³a', 'Transmitancja dyskretna', 'Location', 'southeast');
 xlabel('Czas');
 ylabel('Wartoœæ');

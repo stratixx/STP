@@ -48,4 +48,6 @@ for k=start:kk; %g³ówna ptla symulacyjna
     %sygna³ sterujcy regulatora PID
     u(k)=r2*e(k-2)+r1*e(k-1)+r0*e(k)+u(k-1);
 end
-s = u(13:83);
+begin = 7;
+stop = 18;
+s = u((begin/Tp):(stop/Tp));

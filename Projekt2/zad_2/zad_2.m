@@ -33,7 +33,7 @@ r2 = Kr*Td/Tp;
 %inicjalizacja
 regulator = 'PID';
 start = 13;
-kk=400; %koniec symulacji
+kk=110; %koniec symulacji
 %warunki pocztkowe
 u=zeros(1,kk);
 y=zeros(1,kk);
@@ -42,12 +42,8 @@ yzad=zeros(1,kk); yzad(1,start:kk)=1;
 
 for k=start:kk; %g³ówna ptla symulacyjna
     %symulacja obiektu
-    y(k) = -b(1)*y(k-1)-b(2)*y(k-2) + c(11+1)*u(k-11)+c(12+1)*u(k-12);
-    %uchyb regulacji
-    e(k)=yzad(k)-y(k);
-    %sygna³ sterujcy regulatora PID
-    u(k)=r2*e(k-2)+r1*e(k-1)+r0*e(k)+u(k-1);
+    y(k) = -b(1)*y(k-1)-b(2)*y(k-2) + c(11+1)*yzad(k-11)+c(12+1)*yzad(k-12);
 end
-begin = 7;
-stop = 18;
-s = u((begin/Tp):(stop/Tp));
+begin = start;
+stop = 55;
+s = y(begin:stop);

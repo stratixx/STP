@@ -2,16 +2,21 @@ run('../zad_2/zad_2.m');
 
 % parametry DMC
 % horyzont dynamiki wyznaczony z odpowiedzi skokowej
-% jako zmiana od 10 do 90%
+% jako zmiana od startu do 90%
 D = length(s); 
-N=4;
+N=12;
 Nu=1;
-lambda = 400;
-for lambda=1000:-50:50
-
+lambda = 6.9;
+for k=1:1:1 % podpunkt a
+%for N=D:-1:1 % podpunkt b
+%    Nu=N;
+%for Nu=1:1:N % podpunkt c
+%vectLambda = 0.1501:0.001:0.1601;
+%for kLambda=1:1:length(vectLambda) % podpunkt d
+%lambda = vectLambda(kLambda);
 %inicjalizacja symulacji
 start = 100;
-kk=689; %koniec symulacji
+kk=289; %koniec symulacji
 %warunki pocztkowe
 u=zeros(1,kk);
 y=zeros(1,kk);
@@ -50,7 +55,7 @@ hold on;
 stairs((1:(kk-start+10+1))*Tp, uDMC((start-10):kk));
 title('Wykres sterowania obiektu'); xlabel('Czas(s)'); ylabel('Wartoœæ'); 
 grid on; box on; legend('u_D_M_C', 'Location', 'southeast');
-print(strcat('img/d/wykresy_u/u_D_',num2str(D),'_lambda_',num2str(lambda),'_N_',num2str(N),'_Nu_',num2str(Nu)), '-dpng');
+print(strcat('img/a/wykresy_u/u_D_',num2str(D),'_lambda_',strrep(num2str(lambda),'.','_'),'_N_',num2str(N),'_Nu_',num2str(Nu)), '-dpng');
 close;
 figure; hold on; 
 stairs((1:kk-start+10+1)*Tp, yDMC(start-10:kk)); 
@@ -59,6 +64,6 @@ grid on; box on;
 title('Wykres wyjœcia obiektu'); 
 xlabel('Czas(s)'); ylabel('Wartoœæ'); 
 legend('y_D_M_C', 'y_z_a_d', 'Location', 'southeast');
-print(strcat('img/d/wykresy_y/y_D_',num2str(D),'_lambda_',num2str(lambda),'_N_',num2str(N),'_Nu_',num2str(Nu)), '-dpng');
+print(strcat('img/a/wykresy_y/y_D_',num2str(D),'_lambda_',strrep(num2str(lambda),'.','_'),'_N_',num2str(N),'_Nu_',num2str(Nu)), '-dpng');
 close;
 end;

@@ -8,10 +8,10 @@ run('../zad_4/step_response.m');
 D = length(s); % horyzont dynamiki
 N=12;
 Nu=1;
-lambda = 6.9;
+lambda = 1;
 run('../zad_4/DMC_init.m');
 
-regulator = 'PID';
+regulator = 'DMC';
 startT0 = T0;
 startK0 = K0;
 wspT0 = 1:0.1:2;
@@ -38,7 +38,12 @@ for kT0=1:1:length(wspT0)
         for k=start:kk; %g³ówna ptla symulacyjna
             %symulacja obiektu
             y(k) = -y((k-length(b)):(k-1))*(flip(b')) + u((k-length(c)+1):(k))*(flip(c'));  
-
+            
+            %pierwszy etap wykrycia niestabilnoœci
+            if abs(y(k))>10
+                break;
+            end
+            
             if regulator == 'PID'
                 %uchyb regulacji
                 e(k)=yzad(k)-y(k);
@@ -54,7 +59,7 @@ for kT0=1:1:length(wspT0)
                 u(k) = u(k-1)+deltau(1);
             end
         end;
-        if max(abs(y))>3
+        if max(abs(y))>10
             display(strcat('niestabliny dla T0=',num2str(T0),' K0=',num2str(K0)))
             stab(:,kT0) = [ (K0-0.1)/startK0; T0/startT0 ]
             break
@@ -78,6 +83,6 @@ hold on; grid on; box on;
 title('Obszary stabilnoœci algorytmów PID i DMC')
 xlabel('T_0/T_0_n_o_m');
 ylabel('K_0/K_0_n_o_m');
-plot(stabPID(2,:),stabPID(1,:),'.')
-plot(stabDMC(2,:),stabDMC(1,:),'*')
+plot(stabPID(2,:),stabPID(1,:),'-o')
+plot(stabDMC(2,:),stabDMC(1,:),'-o')
 legend('PID','DMC');

@@ -6,19 +6,20 @@ run('../zad_2/zad_2.m');
 % jako zmiana od startu do 90%
 run('../zad_4/step_response.m');
 D = length(s); 
-Nvect=[10,11,12,13,14];%12;
-Nuvect=[1,3,6,9,11];
-lambdavect = [1,2,3,4,5];%6.9;
+Nvect=[12,16,17,37,43];%[12]; 
+Nuvect=[1,2,6,12,43];%dla N=D
+%Nuvect=[1,2,6,8,12];%dla N=12
+lambdavect = [0.25,0.75,1,2.5,7.5]; %[1]
 
 % wybór pêtli do konkretnego podpunktu
 %for k=1:1:1                        % podpunkt a
  %   N=D; Nu=D; lambda=1;
-for kN=1:1:length(Nvect)           % podpunkt b
-    N = Nvect(kN);  Nu=N; lambda=1;
+%for kN=1:1:length(Nvect)           % podpunkt b
+    %N = Nvect(kN);  Nu=N; lambda=1;
 %for kNu=1:1:length(Nuvect)         % podpunkt c
-    %Nu = Nuvect(kNu);  N=12; lambda=1;
-%for kLambda=1:1:length(lambdavect)  % podpunkt d
-    %lambda = lambdavect(kLambda); N=12; Nu=1; 
+    %Nu = Nuvect(kNu);  N=D; lambda=1;
+for kLambda=1:1:length(lambdavect)  % podpunkt d
+    lambda = lambdavect(kLambda); N=12; Nu=1; 
 
 %inicjalizacja symulacji
 start = 100;
@@ -58,10 +59,10 @@ end;
 stairs((1:kk-start+10+1)*Tp, yzad(start-10:kk)); 
 
 % legendy do wykresów do poszczególnych podpunktów
-%run('legendsToA.m');
-run('legendsToB.m');
+run('legendsToA.m');
+%run('legendsToB.m');
 %run('legendsToC.m');
 %run('legendsToD.m');
 
-print(strcat('img/b/D_',num2str(D),'_lambda_',strrep(num2str(lambda),'.','_'),'_N_',num2str(N),'_Nu_',num2str(Nu)), '-dpng');
+print(strcat('img/a/D_',num2str(D),'_lambda_',strrep(num2str(lambda),'.','_'),'_N_',num2str(N),'_Nu_',num2str(Nu)), '-dpng');
 %close 1;

@@ -9,13 +9,13 @@ run('step_response.m');
 D = length(s); % horyzont dynamiki
 N=12;
 Nu=1;
-lambda = 6.9
+lambda = 1
 run('DMC_init.m');
 
 %inicjalizacja symulacji
-regulator = 'PID';
+regulator = 'DMC';
 start = 100;
-kk=620; %koniec symulacji
+kk=229; %koniec symulacji
 %warunki pocztkowe
 u=zeros(1,kk);
 y=zeros(1,kk);
@@ -51,19 +51,22 @@ if regulator == 'PID'
     uPID = u; yPID = y;
 end
 
-figure; 
-hold on; 
-stairs((1:kk)*Tp, uPID); 
-stairs((1:kk)*Tp, uDMC);
+figure(1); 
+subplot(2,1,1);
+hold on; grid on; box on; 
+stairs((1:kk-start+10+1)*Tp, uPID(start-10:kk)); 
+stairs((1:kk-start+10+1)*Tp, uDMC(start-10:kk)); 
 title('Wykres sterowania obiektu'); xlabel('Czas(s)'); ylabel('Wartoœæ'); 
-grid on; box on; legend('u_P_I_D', 'u_D_M_C');
-print('img/wykres_u', '-dpng');
-figure; hold on; 
-stairs((1:kk)*Tp, yPID); 
-stairs((1:kk)*Tp, yDMC); 
-stairs((1:kk)*Tp, yzad(1:kk)); 
-grid on; box on;
+legend('u_P_I_D', 'u_D_M_C');
+subplot(2,1,2);
+hold on; grid on; box on;
+stairs((1:kk-start+10+1)*Tp, yPID(start-10:kk)); 
+stairs((1:kk-start+10+1)*Tp, yDMC(start-10:kk)); 
+stairs((1:kk-start+10+1)*Tp, yzad(start-10:kk)); 
+
 title('Wykres wyjœcia obiektu'); 
 xlabel('Czas(s)'); ylabel('Wartoœæ'); 
-legend('y_P_I_D', 'y_D_M_C', 'y_z_a_d');
-%print('img/wykres_y', '-dpng');
+legend('y_P_I_D', 'y_D_M_C', 'y_z_a_d', 'location','southeast');
+
+print('img/pid_with_dmc', '-dpng');
+close 1;

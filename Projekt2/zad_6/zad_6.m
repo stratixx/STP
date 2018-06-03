@@ -22,7 +22,7 @@ for kT0=1:1:length(wspT0)
     T0 = startT0 * wspT0(kT0);
     K0 = startK0;
     while K0<100
-        K0 = K0 + 0.1;
+        K0 = K0 + 0.2
         % przeliczenie parametrów obiektu
         run('../zad_2/zad_2.m');
 
@@ -72,3 +72,12 @@ if regulator == 'PID'
     uPID = u; yPID = y;
     stabPID = stab
 end
+
+figure(1)
+hold on; grid on; box on;
+title('Obszary stabilnoœci algorytmów PID i DMC')
+xlabel('T_0/T_0_n_o_m');
+ylabel('K_0/K_0_n_o_m');
+plot(stabPID(2,:),stabPID(1,:),'.')
+plot(stabDMC(2,:),stabDMC(1,:),'*')
+legend('PID','DMC');

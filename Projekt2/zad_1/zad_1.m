@@ -22,5 +22,8 @@ xlabel('Czas');
 ylabel('Wartoœæ');
 title('OdpowiedŸ skokowa transmitancji');
 box on; grid on;
-print('img/odp_skokowa_modeli', '-dpng');
-close 1;
+%print('img/odp_skokowa_modeli', '-dpng');
+%close 1;
+Gz
+KstatS
+KstatZ

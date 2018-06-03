@@ -1,4 +1,4 @@
-%load('../dane_poczatkowe.mat');
+load('../dane_poczatkowe.mat');
 
 run('../zad_2/zad_2.m');
 
@@ -42,8 +42,8 @@ for k=start:kk; %g³ówna ptla symulacyjna
     end
 end;
 %wyniki symulacji
-uDMC=0; yDMC=0;
-uPID=0; yPID=0;
+%uDMC=0; yDMC=0;
+%uPID=0; yPID=0;
 if regulator == 'DMC'
     uDMC = u; yDMC = y;
 end
@@ -66,4 +66,4 @@ grid on; box on;
 title('Wykres wyjœcia obiektu'); 
 xlabel('Czas(s)'); ylabel('Wartoœæ'); 
 legend('y_P_I_D', 'y_D_M_C', 'y_z_a_d');
-print('img/wykres_y', '-dpng');
+%print('img/wykres_y', '-dpng');

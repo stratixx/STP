@@ -4,12 +4,12 @@ Kr = 0.38623;
 Ti = 100000000;
 Td = 0.000000001;
 
-Kk = 0.38623;
-Tk = 20;
+Kk = 0.38623
+Tk = 20
 
-Kr = 0.6*Kk;
-Ti = 0.5*Tk;
-Td = 0.12*Tk;
+Kr = 0.6*Kk
+Ti = 0.5*Tk
+Td = 0.12*Tk
 
 s = tf('s');
 Gs = K0*exp(-T0*s) / ( (T1*s+1)*(T2*s+1) );
@@ -31,6 +31,6 @@ for kK=1:1:length(Kr)
 end
 end
 
-r0 = Kr*(1+Tp/(2*Ti)+Td/Tp);
-r1 = Kr*(Tp/(2*Ti)-2*Td/Tp-1);
-r2 = Kr*(1+Tp/(2*Ti)+Td/Tp);
+r0 = Kr*(1+Tp/(2*Ti)+Td/Tp)
+r1 = Kr*(Tp/(2*Ti)-2*Td/Tp-1)
+r2 = Kr*(1+Tp/(2*Ti)+Td/Tp)

@@ -34,8 +34,11 @@ for k=start:kk; %g³ówna ptla symulacyjna
     end;
     
     if regulator == 'DMC' 
+        %trajektoria swobodna
         yo = y(k)*ones(D,1)+Mp*flip(deltaUp((k-D+1):(k-1)));
+        %przysz³e sterowania
         deltau = K*(yzad(k:(k+D-1))'-yo);
+        %bie¿¹ca zmiana sterowania
         deltaUp(k) = deltau(1);
         %sygna³ sterujcy regulatora DMC       
         u(k) = u(k-1)+deltau(1);
